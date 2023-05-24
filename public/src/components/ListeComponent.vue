@@ -53,20 +53,25 @@ import carteComponent from './CarteComponent.vue';
             }
         },
         $emit: {
+            
             delete: function (id) {
                 this.$emit('delete', id)
             }
         },
         methods:{
+            //Élimine la carte supprimée de la vue
             handleCarteDeleted(id){
                 this.cartes = this.cartes.filter(carte => carte.id !== id);
             },
+            //Affiche le formulaire d'ajout de carte
             afficherFormNouveau(){
                 this.nouveau = true;
             },
+            //Cache le formulaire d'ajout de carte
             cacherFormNouveau(){
                 this.nouveau = false;
             },
+            //Ajoute une carte à la liste
             ajouterNouveau(){
                 const tableauId = this.$route.params.id;
                 const listeId = this.liste._id;
@@ -96,6 +101,7 @@ import carteComponent from './CarteComponent.vue';
                 .catch(error => console.log(error)
                 );
             },
+            //Supprime la liste
             supprimerListe(){
                 const {tableauId} = this.$route.params.tableauId;
                 const {listeId} = this.liste.id;
@@ -123,12 +129,15 @@ import carteComponent from './CarteComponent.vue';
                 .catch(error => console.log(error)
                 );
             },
+            //Affiche le formulaire de modification de liste
             afficherModifListe(){
                 this.modif = true;
             },
+            //Cache le formulaire de modification de liste
             retirerModifListe(){
                 this.modif = false;
             },
+            //Modifie la liste
             modifierListe(){
                 //Api modifierListe
                 const tableauId = this.$route.params.id;
@@ -156,11 +165,13 @@ import carteComponent from './CarteComponent.vue';
                 })
                 
             },
+            //Permet de déplacer une carte d'une liste à une autre
             startDrag(event, item){
                 event.dataTransfer.dropEffect = "move";
                 event.dataTransfer.effectAllowed = "move";
                 event.dataTransfer.setData("itemId", item.id);
             },
+            //Permet de déplacer une carte d'une liste à une autre
             onDrop(event, liste){
                 //API update
                 const itemId = event.dataTransfer.getData("itemId");
@@ -195,6 +206,7 @@ import carteComponent from './CarteComponent.vue';
                 .catch(error => console.log(error)
                 );
             },
+            //Récupère les cartes de la liste
             recupererCartes(){
                 const tableauId = this.$route.params.id;
                 const listeId = this.liste._id;

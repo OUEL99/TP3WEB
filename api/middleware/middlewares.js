@@ -3,6 +3,13 @@ const Tableau = require("../models/tableau");
 const Liste = require("../models/liste");
 const Carte = require("../models/carte");
 
+/**
+ * Permet de vérifier si l'utilisateur est connecté
+ * @param {*} req 
+ * @param {*} res 
+ * @param {*} next 
+ * @returns 
+ */
 exports.verifierConnexion = (req, res, next) => {
     const token = req.headers.authorization.split(" ")[1];
     try{
@@ -16,6 +23,13 @@ exports.verifierConnexion = (req, res, next) => {
     }
 };
 
+/**
+ * Permet de vérifier si l'utilisateur est propriétaire du tableau
+ * @param {*} req 
+ * @param {*} res 
+ * @param {*} next
+ * @param {String} req.params.id - Id du tableau 
+ */
 exports.verifierProprioTableau = (req, res, next) =>{
     const tableauId = req.params.id;
     Tableau.findById(tableauId)
@@ -44,7 +58,13 @@ exports.verifierProprioTableau = (req, res, next) =>{
         });
 };
 
-
+/**
+ * Permet de vérifier si l'utilisateur est propriétaire de la liste
+ * @param {*} req 
+ * @param {*} res 
+ * @param {*} next 
+ * @param {String} req.params.id - Id de la liste
+ */
 exports.verifierProprioListe =(req,res, next) =>{
     const listeId = req.params.id;
     Liste.findById(listeId)
@@ -66,6 +86,13 @@ exports.verifierProprioListe =(req,res, next) =>{
     });
 }
 
+/**
+ * Permet de vérifier si l'utilisateur est propriétaire de la carte
+ * @param {*} req 
+ * @param {*} res 
+ * @param {*} next 
+ * @param {String} req.params.id - Id de la carte
+ */
 exports.verifierProprioCarte = (req,res, next) =>{
     const carteId = req.params.id;
     Carte.findById(carteId)

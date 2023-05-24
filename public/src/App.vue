@@ -45,6 +45,7 @@ import { ref } from 'vue'
       }
     },
     methods:{
+      // Déconnecte l'utilisateur
       disconnect(){
         localStorage.removeItem('token')
         localStorage.removeItem('userId')

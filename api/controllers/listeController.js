@@ -7,7 +7,14 @@ dotenv.config();
 
 const url_base = process.env.URL + ":" + process.env.PORT;
 
-
+/**
+ * Permet la création d'une liste
+ * @param {*} req 
+ * @param {*} res 
+ * @param {*} next 
+ * @param {String} req.params.tableauId - Id du tableau
+ * @returns {Object} - Objet contenant les informations de la liste créée
+ */
 exports.createListe = (req, res, next) => {
    
 
@@ -32,6 +39,14 @@ exports.createListe = (req, res, next) => {
         });
 };
 
+/**
+ * Permet d'obtenir la liste des listes d'un tableau
+ * @param {*} req 
+ * @param {*} res 
+ * @param {*} next 
+ * @param {String} req.params.tableauId - Id du tableau
+ * @returns {Array} - Tableau contenant les listes du tableau
+ */
 exports.getListes = (req, res, next) => {
     const tableauId = req.params.tableauId;
 	Liste.find({tableau: tableauId})
@@ -47,6 +62,14 @@ exports.getListes = (req, res, next) => {
         });
 };
 
+/**
+ * Permet d'obtenir une liste précise
+ * @param {*} req 
+ * @param {*} res 
+ * @param {*} next 
+ * @param {String} req.params.id - Id de la liste
+ * @returns {Object} - Objet contenant les informations de la liste
+ */
 exports.getListe = (req, res, next) => {
 	const listeId = req.params.id;
     Liste.findById(listeId)
@@ -66,6 +89,16 @@ exports.getListe = (req, res, next) => {
         });
 };
 
+/**
+ * Permet de modifier une liste
+ * @param {*} req 
+ * @param {*} res 
+ * @param {*} next 
+ * @param {String} req.params.listeId - Id de la liste
+ * @param {String} req.params.tableauId - Id du tableau
+ * @body {String} req.body.titre - Titre de la liste
+ * @returns {Object} - Objet contenant les informations de la liste modifiée
+ */
 exports.updateListe = (req, res, next) => {
     const listeId = req.params.listeId;
     const titre = req.body.titre;
@@ -89,6 +122,14 @@ exports.updateListe = (req, res, next) => {
         });
 };
 
+/**
+ * Permet de supprimer une liste
+ * @param {*} req 
+ * @param {*} res 
+ * @param {*} next 
+ * @param {String} req.params.listeId - Id de la liste
+ * @returns {Object} - Objet contenant les informations de la liste supprimée
+ */
 exports.deleteListe = (req, res, next) => {
     const listId = req.params.listeId;
     Liste.findByIdAndRemove(listId)

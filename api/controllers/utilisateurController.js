@@ -6,6 +6,15 @@ dotenv.config();
 
 const url_base = process.env.URL + ":" + process.env.PORT;
 
+/**
+ * Permet de créer un utilisateur
+ * @param {*} req 
+ * @param {*} res 
+ * @param {*} next
+ * @body {String} req.body.nom - Nom de l'utilisateur
+ * @body {String} req.body.courriel - Courriel de l'utilisateur
+ * @body {String} req.body.motDePasse - Mot de passe de l'utilisateur 
+ */
 exports.createUtilisateur = async(req, res, next) => {
     const nom = req.body.nom;
     const courriel = req.body.courriel;
@@ -29,6 +38,13 @@ exports.createUtilisateur = async(req, res, next) => {
         });
 };
 
+/**
+ * Permet de récupérer tous les utilisateurs
+ * @param {*} req 
+ * @param {*} res 
+ * @param {*} next 
+ * @returns {Utilisateur[]} - Tableau d'utilisateurs
+ */
 exports.getUtilisateurs = (req, res, next) => {
     Utilisateur.find()
         .then(utilisateurs => {
@@ -42,6 +58,14 @@ exports.getUtilisateurs = (req, res, next) => {
         });
 };
 
+/**
+ * Permet de récupérer un utilisateur
+ * @param {*} req
+ * @param {*} res
+ * @param {*} next
+ * @param {String} req.params.id - Id de l'utilisateur
+ * @returns {Utilisateur} - Utilisateur
+ */
 exports.getUtilisateur = async (req, res, next) => {
     const utilisateurId = req.params.id;
     
@@ -62,6 +86,13 @@ exports.getUtilisateur = async (req, res, next) => {
         });  
 };
 
+/**
+ * Permet de valider si un courriel est déjà utilisé
+ * @param {*} req 
+ * @param {*} res 
+ * @param {*} next
+ * @query {String} req.query.courriel - Courriel de l'utilisateur 
+ */
 exports.validateEmail = async (req, res, next) => {
     const { courriel } = req.query;
     Utilisateur.findOne({ courriel: courriel })

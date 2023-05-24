@@ -34,6 +34,7 @@ export default {
         }
     },
     methods:{
+        // Validation du formulaire Email
         validateEmail(){
             
             this.emailIsValid = true;
@@ -45,6 +46,7 @@ export default {
                 this.emailErreur = "";
             }
         },
+        // Validation du formulaire Mot de passe
         validateMdp(){
             this.mdpIsValid = true;
             if (this.mdp === "") {
@@ -55,6 +57,7 @@ export default {
                 this.mdpErreur = "";
             }
         },
+        // Connexion
         connexion(){
             if(this.emailIsValid && this.mdpIsValid){
                 //api validation

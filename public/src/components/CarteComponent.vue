@@ -49,12 +49,15 @@ export default {
         }
     },
     methods:{
+        // Affiche le formulaire de modification de la carte
         afficherModifCarte(){
             this.modif = true;
         },
+        // Cache le formulaire de modification de la carte
         cacherModifCarte(){
             this.modif = false;
         },
+        // Modifie la carte
         modifierCarte(){
             
             const titre = this.carteModifiee.titre;
@@ -87,6 +90,7 @@ export default {
             .catch(error => console.log(error));
             
         },
+        // Supprime la carte
         supprimerCarte(){
             const tableauId = this.$route.params.id;
             const listeId = this.carte.liste;

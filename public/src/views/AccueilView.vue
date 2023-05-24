@@ -37,6 +37,7 @@ import tableau from "../components/TableauComponent.vue";
             }
         },
         methods:{
+            // Récupère les tableaux de l'utilisateur
             recupererTableaux(){
                 fetch('http://localhost:3000/tableaux',{
                     method: 'GET',
@@ -56,14 +57,17 @@ import tableau from "../components/TableauComponent.vue";
                 .catch(error => console.log(error)
                 );
             },
+            // Affiche le formulaire d'ajout d'un nouveau tableau
             afficherFormNouveau(){
                 console.log("Valeur actuelle de nouveau avant la modification :", this.nouveau);
                 this.nouveau = true;
                 console.log("Valeur actuelle de nouveau après la modification :", this.nouveau);
             },
+            // Cache le formulaire d'ajout d'un nouveau tableau
             cacherFormNouveau(){
                 this.nouveau = false;
             },
+            // Ajoute un nouveau tableau
             ajouterNouveau(){
                 const proprietaire = localStorage.getItem('userId');
                 if (!proprietaire) {
@@ -97,6 +101,7 @@ import tableau from "../components/TableauComponent.vue";
                 .catch(error => console.log(error)
                 );
             },
+            // Supprime un tableau
             deleteTableau(id){
 
                 this.tableaux = this.tableaux.filter(tableau => tableau._id !== id);

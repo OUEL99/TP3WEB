@@ -10,6 +10,16 @@ dotenv.config();
 
 const url_base = process.env.URL + ":" + process.env.PORT;
 
+/**
+ * Permet la création d'un tableau
+ * @param {*} req 
+ * @param {*} res 
+ * @param {*} next 
+ * @body {String} req.body.titre - Titre du tableau
+ * @body {String} req.body.proprietaire - Id du propriétaire du tableau
+ * @body {Array} req.body.listes - Tableau contenant les listes du tableau
+ * @returns {Object} - Objet contenant les informations du tableau créé
+ */
 exports.createTableau = (req, res, next) => {
     console.log(req.body.proprietaire)
     const titre = req.body.titre;
@@ -36,7 +46,13 @@ exports.createTableau = (req, res, next) => {
         });
 };
 
-
+/**
+ * Permet d'obtenir la liste des tableaux
+ * @param {*} req 
+ * @param {*} res 
+ * @param {*} next 
+ * @returns {Array} - Tableau contenant les tableaux
+ */
 exports.getTableaux = (req, res, next) => {
 
     Tableau.find()
@@ -51,6 +67,14 @@ exports.getTableaux = (req, res, next) => {
         });
 };
 
+/**
+ * Permet d'obtenir un tableau précis
+ * @param {*} req 
+ * @param {*} res 
+ * @param {*} next 
+ * @param {String} req.params.tableauId - Id du tableau
+ * @returns {Object} - Objet contenant les informations du tableau
+ */
 exports.getTableau = (req, res, next) => {
     const tableauId = req.params.tableauId;
     Tableau.findById(tableauId)
@@ -77,6 +101,15 @@ exports.getTableau = (req, res, next) => {
         });
 };
 
+/**
+ * Permet de modifier un tableau
+ * @param {*} req 
+ * @param {*} res 
+ * @param {*} next 
+ * @param {String} req.params.tableauId - Id du tableau
+ * @body {String} req.body.titre - Titre du tableau
+ * @returns {Object} - Objet contenant les informations du tableau modifié
+ */
 exports.updateTableau = (req, res, next) => {
 	const tableauId = req.params.tableauId;
     const titre = req.body.titre;
@@ -103,6 +136,14 @@ exports.updateTableau = (req, res, next) => {
         });
 };
 
+/**
+ * Permet de supprimer un tableau
+ * @param {*} req 
+ * @param {*} res 
+ * @param {*} next 
+ * @param {String} req.params.tableauId - Id du tableau
+ * @returns {Object} - Objet contenant les informations du tableau supprimé
+ */
 exports.deleteTableau = (req, res, next) => {
 	const tableauId = req.params.tableauId;
     Tableau.findByIdAndRemove(tableauId)

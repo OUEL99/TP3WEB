@@ -45,6 +45,7 @@ import listeComponent from "@/components/ListeComponent.vue";
             }
         },
         methods:{
+            // Récupère les tableaux de l'utilisateur
             recupererTableau(){
                 fetch('http://localhost:3000/tableaux/' + this.$route.params.id,{
                     method: 'GET',
@@ -68,6 +69,7 @@ import listeComponent from "@/components/ListeComponent.vue";
                 .catch(error => console.log(error)
                 );
             },
+            // Récupère les listes du tableau
             recupererListes(){;
                 const tableauId = this.$route.params.id;
                 fetch('http://localhost:3000/tableaux/' + tableauId +'/listes',{
@@ -93,12 +95,15 @@ import listeComponent from "@/components/ListeComponent.vue";
                 .catch(error => console.log(error)
                 );
             },
+            //Affiche le formulaire pour ajouter une liste
             afficherFormNouveau(){
                 this.nouveau = true;
             },
+            //Cache le formulaire pour ajouter une liste
             cacherFormNouveau(){
                 this.nouveau = false;
             },
+            //Ajoute une liste au tableau
             ajouterNouveau(){
                 const tableauId = this.$route.params.id;
                 console.log(this.titreNouveau);
@@ -127,12 +132,15 @@ import listeComponent from "@/components/ListeComponent.vue";
                 .catch(error => console.log(error)
                 );
             },
+            //Affiche le formulaire pour modifier le tableau
             afficherModif(){
                 this.modifTableau = true;
             },
+            //Cache le formulaire pour modifier le tableau
             retirerModif(){
                 this.modifTableau = false;
             },
+            //Modifie le tableau
             modifierTableau(){
                 //api modif tableau
                 const tableauId = this.$route.params.id;
@@ -160,6 +168,7 @@ import listeComponent from "@/components/ListeComponent.vue";
                     this.modifTableau = false;
                 })
             },
+            //Supprime une liste
             deleteList(id){
                 this.listes = this.listes.filter(liste => liste._id !== id);
                 fetch('http://localhost:3000/tableaux/' + this.$route.params.id + '/listes/' + id,{

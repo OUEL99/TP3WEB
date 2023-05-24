@@ -55,6 +55,7 @@
             }
         },
         methods:{
+            // Validation du formulaire Nom
             validateNom(){
                 this.nomIsValid = true;
                 if (this.nom === "") {
@@ -73,14 +74,14 @@
                     this.nomErreur = "";
                 }
             },
-
+            //Retire les messages d'erreur si l'utilisateur efface le champ
             removeErrorsNom(){
                 if(this.nom === ""){
                     this.nomErreur = "";
                 }
                 
             },
-
+            //Retire les messages d'erreur si l'utilisateur efface le champ
             removeErrorsEmail(){
                 if(this.email === ""){
                     this.emailErreur = "";
@@ -88,13 +89,14 @@
                 
                 
             },
+            //Retire les messages d'erreur si l'utilisateur efface le champ
             removeErrorsMdp(){
                 if(this.mdp === ""){
                     this.mdpErreur = "";
                 }
                 
             },
-
+            //Valide le Email
             validateEmail(){
                 const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
                 this.emailIsValid = true;
@@ -124,6 +126,7 @@
                     this.emailOk = "Le courriel est valide et disponible"
                 }
             },
+            //Vérifie si le email est déjà utilisé dans la BD
             async validateIfEmailIsUsed(){
                 try{
                     const response = await fetch('http://localhost:3000/validerEmail?courriel=${this.email}', {
@@ -142,6 +145,7 @@
                     console.log(error);
                 }
             },
+            //Valide le mot de passe
             validateMdp(){
                 this.mdpIsValid = true;
                 if (this.mdp === "") {
@@ -157,6 +161,7 @@
                 }
             },
 
+            //Valide la confirmation du mot de passe
             validateMdp2(){
                 this.mdp2IsValid = true;
                 if (this.mdp2 === "") {
@@ -171,7 +176,7 @@
                     this.mdp2Erreur = "";
                 }
             },
-
+            //Inscription de l'utilisateur
             async inscription(){
                 if(this.formIsInvalid == false){
                     try{
